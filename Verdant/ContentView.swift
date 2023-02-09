@@ -28,6 +28,7 @@ struct TrackerView: View {
                 VStack {
                     //title
                     Text("You've composted \(compostAmount) pounds this week!")
+                    Text("cory is the best mentor")
                         .font(.title)
                         .multilineTextAlignment(.center)
                     Spacer()
