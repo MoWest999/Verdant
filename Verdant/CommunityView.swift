@@ -35,8 +35,6 @@ struct CommunityView: View {
                                     .frame(width: 100, height: 100)
                             }
                         }
-                    }
-                    .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
                                 presentPopup = true
