@@ -11,7 +11,8 @@ import SwiftUI
 struct VerdantApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+
+            CloudKitUserVerdant()
         }
     }
 }

@@ -13,6 +13,7 @@
 		6F7820C4298D4FB500C2F352 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F7820C3298D4FB500C2F352 /* Preview Assets.xcassets */; };
 		B41D43EC299298D90061C8A1 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D43EB299298D90061C8A1 /* CommunityView.swift */; };
 		B41D43EE299298E10061C8A1 /* GardenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D43ED299298E10061C8A1 /* GardenView.swift */; };
+		D0D429D529954B3A00BA15C4 /* CloudKitUserVerdant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D429D429954B3A00BA15C4 /* CloudKitUserVerdant.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,9 @@
 		6F7820C3298D4FB500C2F352 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B41D43EB299298D90061C8A1 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		B41D43ED299298E10061C8A1 /* GardenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenView.swift; sourceTree = "<group>"; };
+		D0D429D429954B3A00BA15C4 /* CloudKitUserVerdant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitUserVerdant.swift; sourceTree = "<group>"; };
+		D0D429D6299557BE00BA15C4 /* Verdant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Verdant.entitlements; sourceTree = "<group>"; };
+		D0D429D72995589700BA15C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +59,13 @@
 		6F7820BB298D4FB400C2F352 /* Verdant */ = {
 			isa = PBXGroup;
 			children = (
+				D0D429D72995589700BA15C4 /* Info.plist */,
+				D0D429D6299557BE00BA15C4 /* Verdant.entitlements */,
 				6F7820BC298D4FB400C2F352 /* VerdantApp.swift */,
 				6F7820BE298D4FB400C2F352 /* ContentView.swift */,
 				B41D43EB299298D90061C8A1 /* CommunityView.swift */,
 				B41D43ED299298E10061C8A1 /* GardenView.swift */,
+				D0D429D129954A1C00BA15C4 /* Cloudkit */,
 				6F7820C0298D4FB500C2F352 /* Assets.xcassets */,
 				6F7820C2298D4FB500C2F352 /* Preview Content */,
 			);
@@ -71,6 +78,14 @@
 				6F7820C3298D4FB500C2F352 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D0D429D129954A1C00BA15C4 /* Cloudkit */ = {
+			isa = PBXGroup;
+			children = (
+				D0D429D429954B3A00BA15C4 /* CloudKitUserVerdant.swift */,
+			);
+			path = Cloudkit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +160,7 @@
 			files = (
 				6F7820BF298D4FB400C2F352 /* ContentView.swift in Sources */,
 				6F7820BD298D4FB400C2F352 /* VerdantApp.swift in Sources */,
+				D0D429D529954B3A00BA15C4 /* CloudKitUserVerdant.swift in Sources */,
 				B41D43EC299298D90061C8A1 /* CommunityView.swift in Sources */,
 				B41D43EE299298E10061C8A1 /* GardenView.swift in Sources */,
 			);
@@ -272,12 +288,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Verdant/Verdant.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Verdant/Preview Content\"";
-				DEVELOPMENT_TEAM = 9K9BWV8R4X;
+				DEVELOPMENT_TEAM = VWH2G7HWL4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Verdant/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -290,6 +309,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MoniqueWest.Verdant.Verdant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -301,12 +321,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Verdant/Verdant.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Verdant/Preview Content\"";
-				DEVELOPMENT_TEAM = 9K9BWV8R4X;
+				DEVELOPMENT_TEAM = VWH2G7HWL4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Verdant/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -319,6 +342,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.MoniqueWest.Verdant.Verdant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
