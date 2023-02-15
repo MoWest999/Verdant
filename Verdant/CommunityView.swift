@@ -52,6 +52,7 @@ struct CommunityView: View {
                     .popover(isPresented: $presentPopup, arrowEdge: .top) {
                         Text("test")
                             .frame(width: 100, height: 100)
+                    
                     }
                 }
             }

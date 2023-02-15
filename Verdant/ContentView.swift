@@ -13,9 +13,15 @@ struct TrackerView: View {
     @State var gaugeValue = 75.0
     @State private var showingAlert = false
     @State private var showingAlertTwo = false
-    @State private var compostAmount = 0.0
+    @State private var compostInput = ""
+    var compostAmount: Double {
+        return Double(compostInput) ?? 0
+    }
     @State private var minValue = 0.0
-    @State private var maxValue = 0.0
+    @State private var maxValueString = ""
+    var maxValueDouble: Double {
+        return Double(maxValueString) ?? 0
+    }
     let formatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -25,59 +31,93 @@ struct TrackerView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                ScrollView {
                 VStack {
                     //title
                     Text("You've composted \(compostAmount) pounds this week!")
-                    Text("cory is the best mentor")
                         .font(.title)
                         .multilineTextAlignment(.center)
-                    Spacer()
+
                 }
                 VStack {
                     //tracker gauge
-                    Gauge(value: compostAmount, in: minValue ... maxValue) {
-                        Text("Gauge Title")
-                    } currentValueLabel: {
-                        Text("50% Complete")
-                            .foregroundColor(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
-                    } minimumValueLabel: {
-                        Text("0")
-                    } maximumValueLabel: {
-                        Text("100")
-                    }.gaugeStyle(CustomCircularGaugeStyle())
-                        .tint(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
+                    TrackerGauge(data: compostAmount, gaugeValue: gaugeValue, min: minValue, max: maxValueDouble)
                     Spacer()
                         .frame(maxHeight: 300)
                 }
+                    Spacer()
                 VStack {
-                    Text("Goal: \(maxValue) lbs")
+                    //set goal
+                    Text("Goal: \(maxValueDouble) lbs")
                     Button {
                         showingAlert = true
                     } label: {
                         Text("Change goal")
                     }
                     .alert("Change your composting goal", isPresented: $showingAlert, actions: {
-                        TextField("Enter amount", value: $maxValue, formatter: formatter)
+                        TextField("Enter amount", text: $maxValueString)
                         Button("Done", action: {})
                     })
                 }
                 VStack {
-                    Spacer()
-                        .frame(minHeight: 50, maxHeight: 90)
+                    //add compost
                     Button {
                         showingAlertTwo = true
                     } label: {
                         Image(systemName: "plus")
                     }
                     .alert("Enter compost amount", isPresented: $showingAlertTwo, actions: {
-                        TextField("Enter amount", value: $compostAmount, formatter: formatter)
+                        TextField("Enter amount", text: $compostInput)
                         Button("Done", action: {})
                     }) .buttonStyle(.borderedProminent)
                         .controlSize(.small)
                 }
+                VStack {
+                    Text("History")
+                        .font(.title2)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                    Divider()
+                        .frame(width: 360)
+                    Text("date")
+                        .frame(width: 330, alignment: .leading)
+                        .fontWeight(.light)
+                    HStack {
+                        MyDataGauge(data: compostAmount, gaugeValue: gaugeValue, min: minValue, max: maxValueDouble)
+                        Spacer()
+                            .frame(maxWidth: 10)
+                        Text("This week, you composted example out of a goal of example lbs.")
+                            .frame(maxWidth: 240, alignment: .trailing)
+                    }
+                    Divider()
+                        .frame(width: 360)
+                    Text("date")
+                        .frame(width: 330, alignment: .leading)
+                        .fontWeight(.light)
+                    HStack {
+                        MyDataGauge(data: compostAmount, gaugeValue: gaugeValue, min: minValue, max: maxValueDouble)
+                        Spacer()
+                            .frame(maxWidth: 10)
+                        Text("This week, you composted example out of a goal of example lbs.")
+                            .frame(maxWidth: 240, alignment: .trailing)
+                    }
+                    Divider()
+                        .frame(width: 360)
+                    Text("date")
+                        .frame(width: 330, alignment: .leading)
+                        .fontWeight(.light)
+                    HStack {
+                        MyDataGauge(data: compostAmount, gaugeValue: gaugeValue, min: minValue, max: maxValueDouble)
+                        Spacer()
+                            .frame(maxWidth: 10)
+                        Text("This week, you composted example out of a goal of example lbs.")
+                            .frame(maxWidth: 240, alignment: .trailing)
+                    }
                 }
-                    //info button
+            }
+        }
                         .toolbar {
+                            //info button
                             ToolbarItem(placement: .navigationBarLeading) {
                                 Button {
                                     presentPopup = true
@@ -89,27 +129,25 @@ struct TrackerView: View {
                                         .frame(width: 100, height: 100)
                                 }
                             }
-                        }
-                //settings button
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                presentPopup = true
-                            } label: {
-                                Image(systemName: "gear")
+                            //settings button
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button {
+                                    presentPopup = true
+                                } label: {
+                                    Image(systemName: "gear")
+                                }
+                                .popover(isPresented: $presentPopup, arrowEdge: .top) {
+                                    Text("test")
+                                        .frame(width: 100, height: 100)
+                                }
                             }
-                            .popover(isPresented: $presentPopup, arrowEdge: .top) {
-                                Text("test")
-                                    .frame(width: 100, height: 100)
-                            }
                         }
-                    }
             }
         }
     }
 
-
-struct CustomCircularGaugeStyle: GaugeStyle {
+//tracker gauge style
+struct TrackerGaugeStyle: GaugeStyle {
     
     @State var presentPopup = false
     
@@ -136,6 +174,92 @@ struct CustomCircularGaugeStyle: GaugeStyle {
                     Text("test")
                 }
             }
+        }
+    }
+}
+
+//tracker gauge template
+struct TrackerGauge: View {
+    
+    @State var data: Double
+    @State var gaugeValue: Double
+    @State var min: Double
+    @State var max: Double
+    
+    var body: some View {
+        Gauge(value: data, in: min ... max) {
+            Text("Gauge Title")
+        } currentValueLabel: {
+            Text("50% Complete")
+                .foregroundColor(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
+        } minimumValueLabel: {
+            Text("0")
+        } maximumValueLabel: {
+            Text("100")
+        }.gaugeStyle(TrackerGaugeStyle())
+            .tint(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
+    }
+}
+
+//my data gauge style
+struct DataGaugeStyle: GaugeStyle {
+    
+    func makeBody(configuration: GaugeStyleConfiguration) -> some View {
+        ZStack {
+            Circle()
+                .stroke(CustomColor.primaryColor.opacity(0.25), lineWidth: 7)
+                .frame(width: 50, height: 50)
+            Circle()
+                .trim(from: 0, to: CGFloat(configuration.value))
+                .stroke(configuration.value * 100 == 100 ?  CustomColor.primaryColor : Color.accentColor,
+                        style: StrokeStyle(lineWidth: 7, lineCap: .round))
+                .frame(width: 50, height: 50)
+                .rotationEffect(Angle(degrees: -90))
+            }
+        }
+    }
+
+//data gauge template
+struct MyDataGauge: View {
+    
+    @State var data: Double
+    @State var gaugeValue: Double
+    @State var min: Double
+    @State var max: Double
+    
+    var body: some View {
+        Gauge(value: data, in: min ... max) {
+            Text("Gauge Title")
+        } currentValueLabel: {
+            Text("50% Complete")
+                .foregroundColor(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
+        } minimumValueLabel: {
+            Text("0")
+        } maximumValueLabel: {
+            Text("100")
+        }.gaugeStyle(DataGaugeStyle())
+            .tint(gaugeValue == 100 ? CustomColor.primaryColor : CustomColor.primaryColor)
+    }
+}
+
+struct DataTab: View {
+    
+    @State var data: Double
+    @State var gaugeValue: Double
+    @State var min: Double
+    @State var max: Double
+    
+    var body: some View {
+        Divider()
+            .frame(width: 360)
+        Text("date")
+            .frame(width: 330, alignment: .leading)
+            .fontWeight(.light)
+        HStack {
+            Spacer()
+                .frame(maxWidth: 10)
+            Text("This week, you composted example out of a goal of example lbs.")
+                .frame(maxWidth: 240, alignment: .trailing)
         }
     }
 }
