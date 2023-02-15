@@ -5,6 +5,7 @@
 //  Created by Dorothy Luetz on 2/7/23.
 //
 
+import MapKit
 import SwiftUI
 
 struct CommunityView: View {
@@ -13,8 +14,8 @@ struct CommunityView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Text("filler")
+            VStack {
+                Text("Compost Sites")
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
@@ -22,32 +23,38 @@ struct CommunityView: View {
                                 .font(.title)
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            Button {
-                                presentPopup = true
-                            } label: {
-                                Image(systemName: "questionmark")
-                                    .foregroundColor(CustomColor.primaryColor)
-                            }
-                            .popover(isPresented: $presentPopup, arrowEdge: .top) {
-                                Text("test")
-                                    .frame(width: 100, height: 100)
-                            }
-                        }
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                presentPopup = true
-                            } label: {
-                                Image(systemName: "gear")
-                                    .foregroundColor(CustomColor.primaryColor)
-                            }
-                            .popover(isPresented: $presentPopup, arrowEdge: .top) {
-                                Text("test")
-                                    .frame(width: 100, height: 100)
-                            }
-                        }
+                MapView()
+                //Text ("add community text here....")
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        presentPopup = true
+                    } label: {
+                        Image(systemName: "questionmark")
+                            .foregroundColor(CustomColor.primaryColor)
                     }
+                    .popover(isPresented: $presentPopup, arrowEdge: .top) {
+                        Text("test")
+                            .frame(width: 100, height: 100)
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        presentPopup = true
+                    } label: {
+                        Image(systemName: "gear")
+                            .foregroundColor(CustomColor.primaryColor)
+                    }
+                    .popover(isPresented: $presentPopup, arrowEdge: .top) {
+                        Text("test")
+                            .frame(width: 100, height: 100)
+                    
+                    }
+                }
             }
         }
     }
