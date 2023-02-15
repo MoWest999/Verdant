@@ -12,7 +12,7 @@ struct CommunityView: View {
     @State var presentPopup = false
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 Text("filler")
                     .navigationBarTitleDisplayMode(.inline)
@@ -23,24 +23,24 @@ struct CommunityView: View {
                         }
                     }
                     .toolbar {
+                        //info button
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "questionmark")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")
                                     .frame(width: 100, height: 100)
                             }
                         }
+                        //settings button
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "gear")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")

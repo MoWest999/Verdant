@@ -23,26 +23,24 @@ struct GardenView: View {
                         }
                     }
                     .toolbar {
+                        //info button
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "questionmark")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")
                                     .frame(width: 100, height: 100)
                             }
                         }
-                    }
-                    .toolbar {
+                        //settings button
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "gear")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")
