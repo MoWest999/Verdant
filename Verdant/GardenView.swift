@@ -14,7 +14,19 @@ struct GardenView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Text("filler")
+                RoundedRectangle(cornerRadius: 20)
+                    .frame(width: 200, height: 200)
+                    .foregroundColor(.white)
+                    .shadow(color: .gray, radius: 6)
+                VStack {
+                    Image(systemName: "lock.fill")
+                        .foregroundColor(.accentColor)
+                        .font(.largeTitle)
+                        .padding()
+                    Text("Coming Soon")
+                        .font(.title2)
+                        .padding()
+                }
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .principal) {
@@ -23,26 +35,24 @@ struct GardenView: View {
                         }
                     }
                     .toolbar {
+                        //info button
                         ToolbarItem(placement: .navigationBarLeading) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "questionmark")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")
                                     .frame(width: 100, height: 100)
                             }
                         }
-                    }
-                    .toolbar {
+                        //settings button
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
                                 presentPopup = true
                             } label: {
                                 Image(systemName: "gear")
-                                    .foregroundColor(CustomColor.primaryColor)
                             }
                             .popover(isPresented: $presentPopup, arrowEdge: .top) {
                                 Text("test")
