@@ -66,7 +66,7 @@
 				B4A957F8299BDBBC00241C72 /* TrackerView.swift */,
 				B41D43EB299298D90061C8A1 /* CommunityView.swift */,
 				B41D43ED299298E10061C8A1 /* GardenView.swift */,
-				B43E8865299C340B00F51059 /* GaugeStyles */,
+				B43E8865299C340B00F51059 /* VarsAndStructs */,
 				6F7820C0298D4FB500C2F352 /* Assets.xcassets */,
 				6F7820C2298D4FB500C2F352 /* Preview Content */,
 			);
@@ -81,13 +81,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		B43E8865299C340B00F51059 /* GaugeStyles */ = {
+		B43E8865299C340B00F51059 /* VarsAndStructs */ = {
 			isa = PBXGroup;
 			children = (
 				B43E8866299C346200F51059 /* TrackerGauges.swift */,
 				B43E8868299C34BA00F51059 /* DataGauges.swift */,
 			);
-			path = GaugeStyles;
+			path = VarsAndStructs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

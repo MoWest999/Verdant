@@ -10,8 +10,6 @@ import SwiftUI
 //tracker gauge style
 struct TrackerGaugeStyle: GaugeStyle {
     
-    @State var presentPopup = false
-    
     func makeBody(configuration: GaugeStyleConfiguration) -> some View {
         ZStack {
             Circle()
@@ -23,40 +21,31 @@ struct TrackerGaugeStyle: GaugeStyle {
                         style: StrokeStyle(lineWidth: 17, lineCap: .round))
                 .frame(width: 175, height: 175)
                 .rotationEffect(Angle(degrees: -90))
-            Button {
-                presentPopup = true
-            } label: {
-                Text("Click here to see your data")
-                    .frame(width: 110)
-                    .foregroundColor(CustomColor.dataText)
-            }
-            .popover(isPresented: $presentPopup, arrowEdge: .top) {
-                NavigationStack {
-                    Text("test")
-                }
+            Image("verdantlogo")
+                .resizable()
+                .frame(width: 60, height: 60)
             }
         }
     }
-}
 
 //tracker gauge template
 struct TrackerGauge: View {
     
-    @State var data: Double
-    @State var gaugeValue: Double
-    @State var min: Double
-    @State var max: Double
+    @Binding var data: String
+    @Binding var gaugeValue: Double
+    @Binding var min: Double
+    @Binding var max: String
     
     var body: some View {
-        Gauge(value: data, in: min ... max) {
-            Text("Gauge Title")
+        Gauge(value: (Double(data) ?? 0), in: min ... (Double(max) ?? 0)) {
+            Text("")
         } currentValueLabel: {
-            Text("50% Complete")
+            Text("")
                 .foregroundColor(gaugeValue == 100 ? Color.accentColor : Color.accentColor)
         } minimumValueLabel: {
-            Text("0")
+            Text("")
         } maximumValueLabel: {
-            Text("100")
+            Text("")
         }.gaugeStyle(TrackerGaugeStyle())
             .tint(gaugeValue == 100 ? Color.accentColor : Color.accentColor)
     }
