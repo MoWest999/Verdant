@@ -23,8 +23,6 @@ struct CommunityView: View {
                                 .font(.title)
                         }
                     }
-                MapView()
-                //Text ("add community text here....")
                 
             }
             .toolbar {
@@ -33,7 +31,7 @@ struct CommunityView: View {
                         presentPopup = true
                     } label: {
                         Image(systemName: "questionmark")
-                            .foregroundColor(CustomColor.primaryColor)
+                            .foregroundColor(.accentColor)
                     }
                     .popover(isPresented: $presentPopup, arrowEdge: .top) {
                         Text("test")
@@ -47,7 +45,7 @@ struct CommunityView: View {
                         presentPopup = true
                     } label: {
                         Image(systemName: "gear")
-                            .foregroundColor(CustomColor.primaryColor)
+                            .foregroundColor(.accentColor)
                     }
                     .popover(isPresented: $presentPopup, arrowEdge: .top) {
                         Text("test")
