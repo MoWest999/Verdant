@@ -13,29 +13,11 @@ struct TrackerView: View {
     @State var presentPopupInfo = false
     @State var presentPopupSettings = false
     @State var presentPopupAllData = false
-    @State var gaugeValue = 75.0
-    @State private var showingAlert = false
-    @State private var compostString = ""
-    var compostToDouble: Double {
-        return Double(compostString) ?? 0
-    }
-    @State private var minValue = 0.0
-    @State private var maxValueString = ""
-    var maxValueDouble: Double {
-        return Double(maxValueString) ?? 0
-    }
-    @State var compostDataCollection: [String] = []
-    let formattedDate = Date().formatted(
-        .dateTime
-            .day().month(.wide).year()
-    )
-    let formattedTime = Date().formatted(
-        .dateTime
-            .hour().minute()
-    )
+    @FocusState private var dataIsFocused: Bool
+    @ObservedObject var data = TrackerData()
     
     var body: some View {
-        let compostAmount = compostToDouble
+        let compostAmount = data.compostToDouble
         NavigationStack {
             ZStack {
                 VStack {
@@ -45,27 +27,27 @@ struct TrackerView: View {
                         .multilineTextAlignment(.center)
                     Spacer()
                         .frame(maxHeight: 15)
-                    Text("Goal: \(maxValueDouble) lbs")
+                    Text("Goal: \(data.maxValueDouble) lbs")
                     Spacer()
                         .frame(maxHeight: 50)
                     
 
                         //tracker gauge
-                        TrackerGauge(data: $compostString, gaugeValue: $gaugeValue, min: $minValue, max: $maxValueString)
+                    TrackerGauge(data: $data.compostString, gaugeValue: $data.gaugeValue, min: $data.minValue, max: $data.maxValueString)
                         Spacer()
                             .frame(maxHeight: 50)
 
                             //set goal
                     VStack {
                         Button {
-                            showingAlert = true
+                            data.showingAlert = true
                         } label: {
                             Text("Change Goal")
                         }
-                        .alert("Change your composting goal", isPresented: $showingAlert) {
-                            TextField("Enter amount", text: $maxValueString)
+                        .alert("Change your composting goal", isPresented: $data.showingAlert) {
+                            TextField("Enter amount", text: $data.maxValueString)
                             Button("Done") {
-                                showingAlert = false
+                                data.showingAlert = false
                             }
                         }
                         
@@ -85,22 +67,21 @@ struct TrackerView: View {
                                         Text("Date")
                                             .opacity(0.5)
                                         Spacer()
-                                        Text(formattedDate)
+                                        Text(data.formattedDate)
                                     }
                                     HStack {
                                         Text("Time")
                                             .opacity(0.5)
                                         Spacer()
-                                        Text(formattedTime)
+                                        Text(data.formattedTime)
                                     }
                                     HStack {
                                         Text("Amount")
                                             .opacity(0.5)
-                                        TextField("Enter amount", text: $compostString)
+                                        TextField("Enter amount", text: $data.compostString)
                                             .keyboardType(.decimalPad)
                                             .multilineTextAlignment(.trailing)
-                                    } .onSubmit {
-                                        compostDataCollection.append(compostString)
+                                            .focused($dataIsFocused)
                                     }
                                 }
                                 Spacer()
@@ -114,9 +95,11 @@ struct TrackerView: View {
                                         }
                                         ToolbarItem(placement: .navigationBarTrailing) {
                                             Button {
+                                                dataIsFocused = false
                                                 presentPopupData = false
+                                                data.compostDataCollection.append(data.compostString)
                                             } label: {
-                                                Text("Done")
+                                                Text("Add")
                                             }
                                         }
                                     }
@@ -125,36 +108,12 @@ struct TrackerView: View {
                         Divider()
                             .frame(width: 150)
                         Button {
-                            presentPopupAllData = true
+                            presentPopupAllData.toggle()
                         } label: {
                             Text("View All Data")
                                 .foregroundColor(.accentColor)
-                        }
-                        .popover(isPresented: $presentPopupAllData, arrowEdge: .top) {
-                                NavigationStack {
-                                    List {
-                                        ForEach (compostDataCollection, id: \.self) {compost in
-                                            Text(compost)
-                                        }
-                                        .onDelete { offsets in
-                                            compostDataCollection.remove(atOffsets: offsets)
-                                        }
-                                }
-                                Spacer()
-                                    .toolbar {
-                                        ToolbarItem(placement: .navigationBarLeading) {
-                                            Button {
-                                                presentPopupAllData = false
-                                            } label: {
-                                                Image(systemName: "chevron.down")
-                                            }
-                                        }
-                                        ToolbarItem(placement: .navigationBarTrailing) {
-                                            EditButton()
-                                        }
-                                    }
-
-                            }
+                        } .sheet(isPresented: $presentPopupAllData) {
+                            AllDataView()
                         }
                     }
                 }

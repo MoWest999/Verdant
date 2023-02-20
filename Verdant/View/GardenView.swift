@@ -25,6 +25,7 @@ struct GardenView: View {
                         .padding()
                     Text("Coming Soon")
                         .font(.title2)
+                        .foregroundColor(.black)
                         .padding()
                 }
                     .navigationBarTitleDisplayMode(.inline)
