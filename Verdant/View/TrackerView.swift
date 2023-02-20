@@ -46,6 +46,7 @@ struct TrackerView: View {
                         }
                         .alert("Change your composting goal", isPresented: $data.showingAlert) {
                             TextField("Enter amount", text: $data.maxValueString)
+                                .keyboardType(.decimalPad)
                             Button("Done") {
                                 data.showingAlert = false
                             }
