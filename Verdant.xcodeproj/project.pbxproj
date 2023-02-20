@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F24B3A229A3663F00FEB070 /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24B3A129A3663F00FEB070 /* InformationView.swift */; };
+		5F24B3A629A369B900FEB070 /* SplashScreen2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F24B3A529A369B900FEB070 /* SplashScreen2View.swift */; };
 		6F7820BD298D4FB400C2F352 /* VerdantApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7820BC298D4FB400C2F352 /* VerdantApp.swift */; };
 		6F7820BF298D4FB400C2F352 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F7820BE298D4FB400C2F352 /* ContentView.swift */; };
 		6F7820C1298D4FB500C2F352 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F7820C0298D4FB500C2F352 /* Assets.xcassets */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F24B3A129A3663F00FEB070 /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
+		5F24B3A529A369B900FEB070 /* SplashScreen2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen2View.swift; sourceTree = "<group>"; };
 		6F7820B9298D4FB400C2F352 /* Verdant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Verdant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F7820BC298D4FB400C2F352 /* VerdantApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerdantApp.swift; sourceTree = "<group>"; };
 		6F7820BE298D4FB400C2F352 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				E0CA025729955B6600D68094 /* MapView.swift */,
 				6F7820C0298D4FB500C2F352 /* Assets.xcassets */,
 				6F7820C2298D4FB500C2F352 /* Preview Content */,
+				5F24B3A129A3663F00FEB070 /* InformationView.swift */,
+				5F24B3A529A369B900FEB070 /* SplashScreen2View.swift */,
 			);
 			path = Verdant;
 			sourceTree = "<group>";
@@ -165,8 +171,10 @@
 			files = (
 				B43E8869299C34BA00F51059 /* DataGauges.swift in Sources */,
 				B43E8867299C346200F51059 /* TrackerGauges.swift in Sources */,
+				5F24B3A629A369B900FEB070 /* SplashScreen2View.swift in Sources */,
 				6F7820BF298D4FB400C2F352 /* ContentView.swift in Sources */,
 				6F7820BD298D4FB400C2F352 /* VerdantApp.swift in Sources */,
+				5F24B3A229A3663F00FEB070 /* InformationView.swift in Sources */,
 				E0CA025829955B6600D68094 /* MapView.swift in Sources */,
 				B41D43EC299298D90061C8A1 /* CommunityView.swift in Sources */,
 				B4A957F9299BDBBC00241C72 /* TrackerView.swift in Sources */,
