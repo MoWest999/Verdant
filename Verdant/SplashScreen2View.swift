@@ -23,15 +23,8 @@ struct SplashScreen2View: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 250, height: 250)
-                    Image ("vdnt")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                    Image ("JUC")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                    
+                    Text("VERDANT")
+                        .font(.largeTitle)
                 }
                 .scaleEffect(size)
                 .opacity(opacity)
