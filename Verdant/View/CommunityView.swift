@@ -23,8 +23,6 @@ struct CommunityView: View {
                                 .font(.title)
                         }
                     }
-                MapView()
-                //Text ("add community text here....")
                 
             }
             .toolbar {
