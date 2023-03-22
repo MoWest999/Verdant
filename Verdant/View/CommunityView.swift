@@ -17,6 +17,8 @@ struct CommunityView: View {
             VStack {
                 Text("Compost Sites")
                     .navigationBarTitleDisplayMode(.inline)
+                // adjusted here:
+                CompostView()
                     .toolbar {
                         ToolbarItem(placement: .principal) {
                             Text("Community")

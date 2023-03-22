@@ -19,6 +19,7 @@
 		B44326E129A3B3F4001F8396 /* AllDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44326E029A3B3F4001F8396 /* AllDataView.swift */; };
 		B482C4F829A3AD300024824F /* TrackerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B482C4F729A3AD300024824F /* TrackerData.swift */; };
 		B4A957F9299BDBBC00241C72 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A957F8299BDBBC00241C72 /* TrackerView.swift */; };
+		E0CFF05D29CB37B8005CBD71 /* CompostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CFF05C29CB37B8005CBD71 /* CompostView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		B44326E029A3B3F4001F8396 /* AllDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDataView.swift; sourceTree = "<group>"; };
 		B482C4F729A3AD300024824F /* TrackerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerData.swift; sourceTree = "<group>"; };
 		B4A957F8299BDBBC00241C72 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
+		E0CFF05C29CB37B8005CBD71 /* CompostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompostView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				B44326E029A3B3F4001F8396 /* AllDataView.swift */,
 				B41D43EB299298D90061C8A1 /* CommunityView.swift */,
 				B41D43ED299298E10061C8A1 /* GardenView.swift */,
+				E0CFF05C29CB37B8005CBD71 /* CompostView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,15 +180,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0CFF05D29CB37B8005CBD71 /* CompostView.swift in Sources */,
 				B43E8869299C34BA00F51059 /* DataGauges.swift in Sources */,
 				B44326E129A3B3F4001F8396 /* AllDataView.swift in Sources */,
 				B482C4F829A3AD300024824F /* TrackerData.swift in Sources */,
 				6F7820BF298D4FB400C2F352 /* ContentView.swift in Sources */,
 				6F7820BD298D4FB400C2F352 /* VerdantApp.swift in Sources */,
-				B43E8867299C346200F51059 /* TrackerGauges.swift in Sources */,
 				5F24B3A629A369B900FEB070 /* SplashScreen2View.swift in Sources */,
 				5F24B3A229A3663F00FEB070 /* InformationView.swift in Sources */,
-				E0CA025829955B6600D68094 /* MapView.swift in Sources */,
 				B41D43EC299298D90061C8A1 /* CommunityView.swift in Sources */,
 				B4A957F9299BDBBC00241C72 /* TrackerView.swift in Sources */,
 				B41D43EE299298E10061C8A1 /* GardenView.swift in Sources */,
