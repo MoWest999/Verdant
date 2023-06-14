@@ -16,6 +16,13 @@
 		B43E8867299C346200F51059 /* TrackerGauges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E8866299C346200F51059 /* TrackerGauges.swift */; };
 		B43E8869299C34BA00F51059 /* DataGauges.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43E8868299C34BA00F51059 /* DataGauges.swift */; };
 		B4A957F9299BDBBC00241C72 /* TrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A957F8299BDBBC00241C72 /* TrackerView.swift */; };
+		D03B76592A374CB600FCB62C /* AddWeeklyCompostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B76582A374CB600FCB62C /* AddWeeklyCompostView.swift */; };
+		D03B765B2A374E0E00FCB62C /* CompostEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B765A2A374E0E00FCB62C /* CompostEntry.swift */; };
+		D03B765D2A374EE200FCB62C /* TrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B765C2A374EE200FCB62C /* TrackerViewModel.swift */; };
+		D03B765F2A37553A00FCB62C /* CompostEntriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B765E2A37553A00FCB62C /* CompostEntriesListView.swift */; };
+		D03B76612A3899EC00FCB62C /* FaqView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B76602A3899EC00FCB62C /* FaqView.swift */; };
+		D03B76682A38A7CD00FCB62C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B76672A38A7CD00FCB62C /* SettingsView.swift */; };
+		D03B76702A3A040100FCB62C /* DirectoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03B766F2A3A040100FCB62C /* DirectoryService.swift */; };
 		E0CA025829955B6600D68094 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CA025729955B6600D68094 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +37,13 @@
 		B43E8866299C346200F51059 /* TrackerGauges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerGauges.swift; sourceTree = "<group>"; };
 		B43E8868299C34BA00F51059 /* DataGauges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataGauges.swift; sourceTree = "<group>"; };
 		B4A957F8299BDBBC00241C72 /* TrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerView.swift; sourceTree = "<group>"; };
+		D03B76582A374CB600FCB62C /* AddWeeklyCompostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeeklyCompostView.swift; sourceTree = "<group>"; };
+		D03B765A2A374E0E00FCB62C /* CompostEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompostEntry.swift; sourceTree = "<group>"; };
+		D03B765C2A374EE200FCB62C /* TrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackerViewModel.swift; sourceTree = "<group>"; };
+		D03B765E2A37553A00FCB62C /* CompostEntriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompostEntriesListView.swift; sourceTree = "<group>"; };
+		D03B76602A3899EC00FCB62C /* FaqView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqView.swift; sourceTree = "<group>"; };
+		D03B76672A38A7CD00FCB62C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D03B766F2A3A040100FCB62C /* DirectoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryService.swift; sourceTree = "<group>"; };
 		E0CA025729955B6600D68094 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -48,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				6F7820BB298D4FB400C2F352 /* Verdant */,
+				D03B766E2A3A037700FCB62C /* Services  */,
 				6F7820BA298D4FB400C2F352 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,12 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				6F7820BC298D4FB400C2F352 /* VerdantApp.swift */,
-				6F7820BE298D4FB400C2F352 /* ContentView.swift */,
-				B4A957F8299BDBBC00241C72 /* TrackerView.swift */,
-				B41D43EB299298D90061C8A1 /* CommunityView.swift */,
-				B41D43ED299298E10061C8A1 /* GardenView.swift */,
+				D03B76632A389B4500FCB62C /* Model */,
+				D03B76642A389B6100FCB62C /* Views */,
+				D03B76652A389B7800FCB62C /* ViewModel */,
 				B43E8865299C340B00F51059 /* VarsAndStructs */,
-				E0CA025729955B6600D68094 /* MapView.swift */,
+				D03B76662A389BD200FCB62C /* Future Featues  */,
 				6F7820C0298D4FB500C2F352 /* Assets.xcassets */,
 				6F7820C2298D4FB500C2F352 /* Preview Content */,
 			);
@@ -91,6 +105,53 @@
 				B43E8868299C34BA00F51059 /* DataGauges.swift */,
 			);
 			path = VarsAndStructs;
+			sourceTree = "<group>";
+		};
+		D03B76632A389B4500FCB62C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D03B765A2A374E0E00FCB62C /* CompostEntry.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D03B76642A389B6100FCB62C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F7820BE298D4FB400C2F352 /* ContentView.swift */,
+				B4A957F8299BDBBC00241C72 /* TrackerView.swift */,
+				D03B76582A374CB600FCB62C /* AddWeeklyCompostView.swift */,
+				D03B765E2A37553A00FCB62C /* CompostEntriesListView.swift */,
+				D03B76672A38A7CD00FCB62C /* SettingsView.swift */,
+				D03B76602A3899EC00FCB62C /* FaqView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D03B76652A389B7800FCB62C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D03B765C2A374EE200FCB62C /* TrackerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D03B76662A389BD200FCB62C /* Future Featues  */ = {
+			isa = PBXGroup;
+			children = (
+				E0CA025729955B6600D68094 /* MapView.swift */,
+				B41D43EB299298D90061C8A1 /* CommunityView.swift */,
+				B41D43ED299298E10061C8A1 /* GardenView.swift */,
+			);
+			path = "Future Featues ";
+			sourceTree = "<group>";
+		};
+		D03B766E2A3A037700FCB62C /* Services  */ = {
+			isa = PBXGroup;
+			children = (
+				D03B766F2A3A040100FCB62C /* DirectoryService.swift */,
+			);
+			path = "Services ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,13 +224,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03B765B2A374E0E00FCB62C /* CompostEntry.swift in Sources */,
 				B43E8869299C34BA00F51059 /* DataGauges.swift in Sources */,
 				B43E8867299C346200F51059 /* TrackerGauges.swift in Sources */,
+				D03B76702A3A040100FCB62C /* DirectoryService.swift in Sources */,
+				D03B76612A3899EC00FCB62C /* FaqView.swift in Sources */,
 				6F7820BF298D4FB400C2F352 /* ContentView.swift in Sources */,
+				D03B76592A374CB600FCB62C /* AddWeeklyCompostView.swift in Sources */,
 				6F7820BD298D4FB400C2F352 /* VerdantApp.swift in Sources */,
+				D03B76682A38A7CD00FCB62C /* SettingsView.swift in Sources */,
 				E0CA025829955B6600D68094 /* MapView.swift in Sources */,
 				B41D43EC299298D90061C8A1 /* CommunityView.swift in Sources */,
 				B4A957F9299BDBBC00241C72 /* TrackerView.swift in Sources */,
+				D03B765F2A37553A00FCB62C /* CompostEntriesListView.swift in Sources */,
+				D03B765D2A374EE200FCB62C /* TrackerViewModel.swift in Sources */,
 				B41D43EE299298E10061C8A1 /* GardenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

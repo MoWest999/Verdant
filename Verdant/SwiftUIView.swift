@@ -1,61 +1,38 @@
 //
-//  TrackerView.swift
+//  SwiftUIView.swift
 //  Verdant
 //
-//  Created by Dorothy Luetz on 2/14/23.
+//  Created by Mason Christeerfield on 6/8/23.
 //
 
 import SwiftUI
 
 struct TrackerView: View {
-    
-    @State var presentPopupData = false
-    @State var presentPopupInfo = false
-    @State var presentPopupSettings = false
-    @State var presentPopupAllData = false
-    @State var gaugeValue = 75.0
+    @StateObject private var viewModel = TrackerViewModel()
     @State private var showingAlert = false
-    @State private var compostString = ""
-    var compostToDouble: Double {
-        return Double(compostString) ?? 0
-    }
-    @State private var minValue = 0.0
-    @State private var maxValueString = ""
-    var maxValueDouble: Double {
-        return Double(maxValueString) ?? 0
-    }
-    @State var compostDataCollection: [String] = []
-    let formattedDate = Date().formatted(
-        .dateTime
-            .day().month(.wide).year()
-    )
-    let formattedTime = Date().formatted(
-        .dateTime
-            .hour().minute()
-    )
+    @State private var presentPopupData = false
+    @State private var presentPopupAllData = false
+    @State private var presentPopupInfo = false
+    @State private var presentPopupSettings = false
     
     var body: some View {
-        let compostAmount = compostToDouble
         NavigationStack {
             ZStack {
                 VStack {
-                    //title
-                    Text("You've composted \(compostAmount) pounds this week!")
+                    Text("You've composted \(viewModel.trackerData.compostAmount) pounds this week!")
                         .font(.title)
                         .multilineTextAlignment(.center)
-                    Spacer()
-                        .frame(maxHeight: 15)
-                    Text("Goal: \(maxValueDouble) lbs")
-                    Spacer()
-                        .frame(maxHeight: 50)
                     
-
-                        //tracker gauge
-                        TrackerGauge(data: $compostString, gaugeValue: $gaugeValue, min: $minValue, max: $maxValueString)
-                        Spacer()
-                            .frame(maxHeight: 50)
-
-                            //set goal
+                    Spacer().frame(maxHeight: 15)
+                    
+                    Text("Goal: \(viewModel.trackerData.maxValue) lbs")
+                    
+                    Spacer().frame(maxHeight: 50)
+                    
+                    TrackerGauge(data: $viewModel.compostString, gaugeValue: $viewModel.trackerData.compostAmount, min: $viewModel.trackerData.minValue, max: $viewModel.maxValueString)
+                    
+                    Spacer().frame(maxHeight: 50)
+                    
                     VStack {
                         Button {
                             showingAlert = true
@@ -63,14 +40,14 @@ struct TrackerView: View {
                             Text("Change Goal")
                         }
                         .alert("Change your composting goal", isPresented: $showingAlert) {
-                            TextField("Enter amount", text: $maxValueString)
+                            TextField("Enter amount", text: $viewModel.maxValueString)
                             Button("Done") {
                                 showingAlert = false
+                                viewModel.updateMaxValue()
                             }
                         }
                         
-                        Divider()
-                            .frame(width: 150)
+                        Divider().frame(width: 150)
                         
                         Button {
                             presentPopupData = true
@@ -85,45 +62,49 @@ struct TrackerView: View {
                                         Text("Date")
                                             .opacity(0.5)
                                         Spacer()
-                                        Text(formattedDate)
+                                        Text(Date().formatted(.dateTime.day().month(.wide).year()))
                                     }
                                     HStack {
                                         Text("Time")
                                             .opacity(0.5)
                                         Spacer()
-                                        Text(formattedTime)
+                                        Text(Date().formatted(.dateTime.hour().minute()))
                                     }
                                     HStack {
                                         Text("Amount")
                                             .opacity(0.5)
-                                        TextField("Enter amount", text: $compostString)
+                                        TextField("Enter amount", text: $viewModel.compostString)
                                             .keyboardType(.decimalPad)
                                             .multilineTextAlignment(.trailing)
-                                    } .onSubmit {
-                                        compostDataCollection.append(compostString)
+                                    }
+                                    .onSubmit {
+                                        viewModel.addCompostData()
+                                        presentPopupData = false
                                     }
                                 }
-                                Spacer()
-                                    .toolbar {
-                                        ToolbarItem(placement: .navigationBarLeading) {
-                                            Button {
-                                                presentPopupData = false
-                                            } label: {
-                                                Text("Cancel")
-                                            }
-                                        }
-                                        ToolbarItem(placement: .navigationBarTrailing) {
-                                            Button {
-                                                presentPopupData = false
-                                            } label: {
-                                                Text("Done")
-                                            }
+                                
+                                Spacer().toolbar {
+                                    ToolbarItem(placement: .navigationBarLeading) {
+                                        Button {
+                                            presentPopupData = false
+                                        } label: {
+                                            Text("Cancel")
                                         }
                                     }
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        Button {
+                                            presentPopupData = false
+                                            viewModel.addCompostData()
+                                        } label: {
+                                            Text("Done")
+                                        }
+                                    }
+                                }
                             }
                         }
-                        Divider()
-                            .frame(width: 150)
+                        
+                        Divider().frame(width: 150)
+                        
                         Button {
                             presentPopupAllData = true
                         } label: {
@@ -131,35 +112,32 @@ struct TrackerView: View {
                                 .foregroundColor(.accentColor)
                         }
                         .popover(isPresented: $presentPopupAllData, arrowEdge: .top) {
-                                NavigationStack {
-                                    List {
-                                        ForEach (compostDataCollection, id: \.self) {compost in
-                                            Text(compost)
-                                        }
-                                        .onDelete { offsets in
-                                            compostDataCollection.remove(atOffsets: offsets)
-                                        }
+                            NavigationStack {
+                                List {
+                                    ForEach(viewModel.trackerData.compostDataCollection, id: \.self) { compostData in
+                                        Text(compostData.amount)
+                                    }
+                                    .onDelete { offsets in
+                                        viewModel.deleteCompostData(atOffsets: offsets)
+                                    }
                                 }
-                                Spacer()
-                                    .toolbar {
-                                        ToolbarItem(placement: .navigationBarLeading) {
-                                            Button {
-                                                presentPopupAllData = false
-                                            } label: {
-                                                Image(systemName: "chevron.down")
-                                            }
-                                        }
-                                        ToolbarItem(placement: .navigationBarTrailing) {
-                                            EditButton()
+                                Spacer().toolbar {
+                                    ToolbarItem(placement: .navigationBarLeading) {
+                                        Button {
+                                            presentPopupAllData = false
+                                        } label: {
+                                            Image(systemName: "chevron.down")
                                         }
                                     }
-
+                                    ToolbarItem(placement: .navigationBarTrailing) {
+                                        EditButton()
+                                    }
+                                }
                             }
                         }
                     }
                 }
                 .toolbar {
-                    //info button
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
                             presentPopupInfo = true
@@ -170,21 +148,19 @@ struct TrackerView: View {
                             NavigationStack {
                                 Text("Nothing to see here.")
                                     .frame(width: 100, height: 100)
-                                .toolbar {
-                                    ToolbarItem(placement: .navigationBarLeading) {
-                                        Button {
-                                            presentPopupInfo = false
-                                        } label: {
-                                            Image(systemName: "chevron.down")
+                                    .toolbar {
+                                        ToolbarItem(placement: .navigationBarLeading) {
+                                            Button {
+                                                presentPopupInfo = false
+                                            } label: {
+                                                Image(systemName: "chevron.down")
+                                            }
                                         }
                                     }
-                                }
                             }
                         }
                     }
                     
-                    
-                    //settings button
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             presentPopupSettings = true
