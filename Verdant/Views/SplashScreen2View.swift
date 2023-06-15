@@ -45,16 +45,16 @@ struct SplashScreen2View: View {
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                     withAnimation {
-                    self.isActive = true
+                        self.isActive = true
+                    }
                 }
             }
         }
     }
 }
-}
 
-    struct SplashScreen2View_Previews: PreviewProvider {
-        static var previews: some View {
-            SplashScreen2View()
+struct SplashScreen2View_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashScreen2View()
     }
 }
