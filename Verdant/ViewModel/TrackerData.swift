@@ -1,11 +1,36 @@
 //
-//  TrackerGauges.swift
+//  TrackerData.swift
 //  Verdant
 //
-//  Created by Dorothy Luetz on 2/14/23.
+//  Created by Dorothy Luetz on 2/20/23.
 //
 
+import Foundation
 import SwiftUI
+
+//tracker data values
+class TrackerData: ObservableObject {
+    var gaugeValue = 75.0
+    @Published var showingAlert = false
+    var compostString = ""
+    var compostToDouble: Double {
+        return Double(compostString) ?? 0
+    }
+    var minValue = 0.0
+    var maxValueString = ""
+    var maxValueDouble: Double {
+        return Double(maxValueString) ?? 0
+    }
+    @Published var compostDataCollection: [String] = []
+    let formattedDate = Date().formatted(
+        .dateTime
+            .day().month(.wide).year()
+    )
+    let formattedTime = Date().formatted(
+        .dateTime
+            .hour().minute()
+    )
+}
 
 //tracker gauge style
 struct TrackerGaugeStyle: GaugeStyle {
@@ -55,3 +80,4 @@ struct TrackerGauge: View {
 struct CustomColor {
 static let dataText = Color("datatext")
 }
+
