@@ -32,9 +32,10 @@ struct AddWeeklyCompostView: View {
                     TextField("Enter amount", text: $amount)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
-                } .onSubmit {
-                    viewModel.addCompostEntry(amount: Double(amount)!)
-                    viewModel.saveCompostEntries()
+                        .onSubmit {
+                           viewModel.addCompostEntry(amount: Double(amount)!)
+                           viewModel.saveCompostEntries()
+                       }
                 }
             }
             Spacer()
