@@ -9,16 +9,27 @@ import Foundation
 
 // showing amount user has composted for the week 
 struct CompostEntry: Identifiable, Codable {
-    var id = UUID()
+    let id: UUID
+    let date: Date
+    var amount: Double
     
-    var formattedDate = Date().formatted(
-        .dateTime
-            .day().month(.wide).year()
-    )
-    var formattedTime = Date().formatted(
-        .dateTime
-            .hour().minute()
-    )
+    var formattedDate: String {
+        date.formatted(date: .abbreviated, time: .omitted)
+    }
     
-    var amount = ""
+    var formattedTime: String {
+        date.formatted(date: .omitted, time: .shortened)
+    }
+        
+    init(amount: Double) {
+        self.id = UUID()
+        self.date = Date()
+        self.amount = amount
+    }
+    
+//    init() {
+//        self.id = UUID()
+//        self.date = Date()
+//        self.amount = 0
+//    }
 }

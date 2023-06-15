@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddWeeklyCompostView: View {
     @ObservedObject var viewModel: TrackerViewModel
-    @State var newEntry = CompostEntry()
+    @State var amount: String = ""
     
     var body: some View {
         NavigationStack {
@@ -18,22 +18,23 @@ struct AddWeeklyCompostView: View {
                     Text("Date")
                         .opacity(0.5)
                     Spacer()
-                    Text(newEntry.formattedDate)
+                    Text(Date().formatted(date: .abbreviated, time: .omitted))
                 }
                 HStack {
                     Text("Time")
                         .opacity(0.5)
                     Spacer()
-                    Text(newEntry.formattedTime)
+                        Text(Date().formatted(date: .omitted, time: .shortened))
                 }
                 HStack {
                     Text("Amount")
                         .opacity(0.5)
-                    TextField("Enter amount", text: $newEntry.amount)
+                    TextField("Enter amount", text: $amount)
                         .keyboardType(.decimalPad)
                         .multilineTextAlignment(.trailing)
                 } .onSubmit {
-                    viewModel.compostEntries.append(newEntry)
+                    viewModel.addCompostEntry(amount: Double(amount)!)
+                    viewModel.saveCompostEntries()
                 }
             }
             Spacer()
@@ -48,7 +49,6 @@ struct AddWeeklyCompostView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             viewModel.isShowingAddCompostView = false
-                            viewModel.compostEntries.append(newEntry)
                         } label: {
                             Text("Done")
                         }

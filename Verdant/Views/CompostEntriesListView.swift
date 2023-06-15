@@ -14,7 +14,7 @@ struct CompostEntriesListView: View {
         NavigationStack {
             List {
                 ForEach (viewModel.compostEntries) {compost in
-                    Text(compost.amount)
+                    Text(compost.amount.description)
                 }
                 .onDelete { offsets in
                     viewModel.compostEntries.remove(atOffsets: offsets)
