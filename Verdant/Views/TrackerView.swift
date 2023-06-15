@@ -16,13 +16,13 @@ struct TrackerView: View {
     
     
     @State private var compostString = ""
-    var compostToDouble: Double {
-        return Double(compostString) ?? 0
+    var compostToDouble: Double.IntegerLiteralType {
+        return Double.IntegerLiteralType(compostString) ?? 0
     }
     @State private var minValue = 0.0
     @State private var maxValueString = ""
-    var maxValueDouble: Double {
-        return Double(maxValueString) ?? 0
+    var maxValueDouble: Double.IntegerLiteralType {
+        return Double.IntegerLiteralType(maxValueString) ?? 0
     }
    
     var body: some View {
