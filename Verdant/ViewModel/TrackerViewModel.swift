@@ -16,6 +16,21 @@ class TrackerViewModel: ObservableObject {
     @Published var isShowingSettingsView = false
     @Published var isShowingChangeCompostAlert = false
     
+    var compostAmount: Double {
+        // Create a variable to store the compost amount
+        var  userAmount: Double = 0
+        
+        // For every compost entry in my list of compost entries
+        for entry in compostEntries {
+            userAmount += entry.amount
+        }
+        
+            // Grab the amount and add to your compost amount variable
+        return userAmount
+        // Return your compost amount
+    }
+    
+    
     func addCompostEntry(amount: Double) {
         let newCompostEntry = CompostEntry(amount: amount)
         compostEntries.append(newCompostEntry)
