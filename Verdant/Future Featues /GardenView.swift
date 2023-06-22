@@ -19,7 +19,7 @@ struct GardenView: View {
                     .foregroundColor(.white)
                     .shadow(color: .gray, radius: 6)
                 VStack {
-                    Image(systemName: "lock.fill")
+                    Image ("GardenStart")
                         .foregroundColor(.accentColor)
                         .font(.largeTitle)
                         .padding()
